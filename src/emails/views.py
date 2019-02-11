@@ -15,11 +15,27 @@ def email_view(request):
       message = my_form.cleaned_data['body']
       from_email = settings.EMAIL_HOST_USER
       email_id = my_form.cleaned_data['email_to']
+      cc = my_form.cleaned_data['cc']
+      bcc = my_form.cleaned_data['bcc']
       to_list = [email_id]
-      my_form.save()
+      cc_list = [cc]
+      bcc_list = [bcc]
+
+      email = EmailMessage(
+          subject=subject,
+          body=message,
+          from_email=from_email,
+          to=to_list,
+          cc=cc_list,
+          bcc=bcc_list,
+          reply_to=[from_email]
+        )
 
       try:
-        send_mail(subject, message, from_email, to_list, fail_silently=True)
+        # TODO: Put send_mail and save() in transaction
+        # send_mail(subject, message, from_email, to_list, fail_silently=True)
+        email.send()
+        my_form.save()
         my_form = EmailForm()
       except BadHeaderError:
         return HttpResponse('Invalid header found.')
