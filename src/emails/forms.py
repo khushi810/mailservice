@@ -4,6 +4,10 @@ from .models import Email
 
 
 class EmailForm(forms.ModelForm):
+
+  cc = forms.CharField(required=False)
+  bcc = forms.CharField(required=False)
+
   class Meta:
     model = Email
     fields = [

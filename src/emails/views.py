@@ -4,6 +4,9 @@ from django.http import HttpResponse
 from django.core.mail import send_mail, BadHeaderError, EmailMessage
 from .models import Email
 from .forms import EmailForm
+import logging
+
+logger = logging.getLogger(__name__)
 
 # Create your views here.
 
@@ -40,7 +43,9 @@ def email_view(request):
         email.send()
         my_form.save()
         my_form = EmailForm()
+        logger.info("email sent successfully")
       except BadHeaderError:
+        logger.error("Error occured while sending email")
         return HttpResponse('Invalid header found.')
     context = {
       "form"  : my_form
