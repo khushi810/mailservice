@@ -17,9 +17,12 @@ def email_view(request):
       email_id = my_form.cleaned_data['email_to']
       cc = my_form.cleaned_data['cc']
       bcc = my_form.cleaned_data['bcc']
-      to_list = [email_id]
-      cc_list = [cc]
-      bcc_list = [bcc]
+      email_id_split = tuple(email_id.split(","))
+      cc_split  = tuple(cc.split(","))
+      bcc_split  = tuple(bcc.split(","))
+      to_list = [email_id_split]
+      cc_list = [cc_split]
+      bcc_list = [bcc_split]
 
       email = EmailMessage(
           subject=subject,
