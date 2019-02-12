@@ -12,7 +12,9 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 # For gmail or google apps
 
-# Import SMTP settings from email_info
+# Import SMTP settings from email_info which contains
+# EMAIL_HOST, EMAIL_PORT, EMAIL_HOST_USER and EMAIL_HOST_PASSWORD
+# refer email_info.py.example for more info
 from emails.email_info import *
 
 import os

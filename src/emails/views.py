@@ -8,8 +8,6 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-# Create your views here.
-
 def email_view(request):
 
     my_form = EmailForm(request.POST or None)
@@ -39,7 +37,6 @@ def email_view(request):
 
       try:
         # TODO: Put send_mail and save() in transaction
-        # send_mail(subject, message, from_email, to_list, fail_silently=True)
         email.send()
         my_form.save()
         my_form = EmailForm()
