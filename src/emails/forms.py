@@ -2,7 +2,6 @@ from django import forms
 
 from .models import Email
 
-
 class EmailForm(forms.ModelForm):
 
   cc = forms.CharField(required=False)
