@@ -1,5 +1,6 @@
 <h1> Email details </h1>
-<form method="POST"> {% csrf_token %}
+<form method="POST" enctype="multipart/form-data"> {% csrf_token %}
   {{ form.as_p }}
+  <input type="file" name="csv_file" id="csv_file"/>
   <input type='submit' values='Send' />
 </form>

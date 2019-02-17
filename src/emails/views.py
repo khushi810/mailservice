@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.core.mail import send_mail, BadHeaderError, EmailMessage
 from .models import Email
 from .forms import EmailForm
+from django.http import HttpResponse, HttpResponseRedirect
 import logging
 
 logger = logging.getLogger(__name__)
@@ -12,6 +13,15 @@ def email_view(request):
 
     my_form = EmailForm(request.POST or None)
     if my_form.is_valid():
+
+      csv_file = request.FILES["csv_file"]
+      if not csv_file.name.endswith('.csv'):
+        messages.error(request,'File is not CSV type')
+        return HttpResponseRedirect(reverse("myapp:upload_csv"))
+
+      file_data = csv_file.read().decode("utf-8")
+      csv_email_id = file_data.split("\n")
+
       subject = my_form.cleaned_data['subject']
       message = my_form.cleaned_data['body']
       from_email = settings.EMAIL_HOST_USER
@@ -21,7 +31,7 @@ def email_view(request):
       email_id_split = email_id.split(",")
       cc_split  = cc.split(",")
       bcc_split  = bcc.split(",")
-      to_list = email_id_split
+      to_list = email_id_split + csv_email_id
       cc_list = cc_split
       bcc_list = bcc_split
 
