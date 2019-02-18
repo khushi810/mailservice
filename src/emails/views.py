@@ -9,6 +9,9 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+def index_view(request):
+  return render(request, "emails/index.html", {})
+
 def email_view(request):
 
     my_form = EmailForm(request.POST or None)

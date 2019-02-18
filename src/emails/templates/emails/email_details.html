@@ -2,6 +2,14 @@
 
 {% load crispy_forms_tags %}
 
+{% block title %}
+Compose Email
+{% endblock %}
+
+{% block header %}
+Compose Email
+{% endblock %}
+
 {% block content %}
 <form method="POST" enctype="multipart/form-data">
   {% csrf_token %}
@@ -31,6 +39,7 @@
     </div>
     <div class="col-12">
       <button type='submit' class="btn btn-primary"> Send </button>
+      <a class="btn btn-default" href="/"> Back </a>
     </div>
   </div>
 </form>
