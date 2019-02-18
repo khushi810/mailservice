@@ -16,6 +16,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 # EMAIL_HOST, EMAIL_PORT, EMAIL_HOST_USER and EMAIL_HOST_PASSWORD
 # refer email_info.py.example for more info
 from emails.email_info import *
+from celery.schedules import crontab
 
 import os
 
@@ -55,6 +56,21 @@ ELASTICSEARCH_DSL={
     'default': {
         'hosts': 'localhost:9200'
     },
+}
+
+# Celery configuration
+CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Asia/Kolkata'
+CELERY_BEAT_SCHEDULE = {
+    'scheduled-email-report': {
+        'task': 'emails.tasks.scheduled_email_report',
+        'schedule': crontab(minute='*'),
+        'args': ()
+    }
 }
 
 
