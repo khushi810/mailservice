@@ -14,26 +14,23 @@ def email_view(request):
     my_form = EmailForm(request.POST or None)
     if my_form.is_valid():
 
-      csv_file = request.FILES["csv_file"]
-      if not csv_file.name.endswith('.csv'):
-        messages.error(request,'File is not CSV type')
-        return HttpResponseRedirect(reverse("myapp:upload_csv"))
+      csv_file = request.FILES.get("csv_file")
+      csv_email_id = []
+      if csv_file != None:
+        if not csv_file.name.endswith('.csv'):
+          messages.error(request,'File is not CSV type')
+          return HttpResponseRedirect(reverse("myapp:upload_csv"))
 
-      file_data = csv_file.read().decode("utf-8")
-      csv_email_id = file_data.split("\n")
+        file_data = csv_file.read().decode("utf-8")
+        csv_email_id = file_data.split("\n")
 
       subject = my_form.cleaned_data['subject']
       message = my_form.cleaned_data['body']
       from_email = settings.EMAIL_HOST_USER
-      email_id = my_form.cleaned_data['email_to']
-      cc = my_form.cleaned_data['cc']
-      bcc = my_form.cleaned_data['bcc']
-      email_id_split = email_id.split(",")
-      cc_split  = cc.split(",")
-      bcc_split  = bcc.split(",")
-      to_list = email_id_split + csv_email_id
-      cc_list = cc_split
-      bcc_list = bcc_split
+      email_id_list = my_form.cleaned_data['email_to']
+      cc_list = my_form.cleaned_data['cc']
+      bcc_list = my_form.cleaned_data['bcc']
+      to_list = email_id_list + csv_email_id
 
       email = EmailMessage(
           subject=subject,
