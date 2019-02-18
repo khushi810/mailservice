@@ -4,13 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <title>Compose Email</title>
+    <title>{% block title %}Welcome!{% endblock %}</title>
   </head>
   <body>
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-8">
-          <h1 class="mt-2">Compose Email</h1>
+          <h1 class="mt-2">{% block header %}Welcome!{% endblock %}</h1>
           <hr class="mt-0 mb-4">
           {% block content %}
           {% endblock %}
