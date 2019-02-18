@@ -3,6 +3,7 @@ from django.db import models
 class Admin(models.Model):
   username    = models.CharField(max_length=100)
   password    = models.CharField(max_length=50)
+  email       = models.EmailField()
 
 class Email(models.Model):
   email_to      = models.CharField(max_length=120)
