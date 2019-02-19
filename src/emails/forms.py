@@ -7,6 +7,8 @@ from django.utils.translation import ugettext_lazy as _
 from django.core.validators import EmailValidator, ValidationError, EMPTY_VALUES
 from django.forms.fields import Field
 
+
+# To create comma separated email field
 class CommaSeparatedEmailField(Field):
     description = _(u"E-mail address(es)")
 
@@ -41,7 +43,7 @@ class CommaSeparatedEmailField(Field):
                                           "e-mail address.") % email)
         return value
 
-
+# To create email form for service
 class EmailForm(forms.ModelForm):
   email_to = CommaSeparatedEmailField()
   cc = CommaSeparatedEmailField(required=False)

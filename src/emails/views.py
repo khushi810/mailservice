@@ -9,9 +9,11 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+# To handle index page
 def index_view(request):
   return render(request, "emails/index.html", {})
 
+# To handle email information
 def email_view(request):
 
     my_form = EmailForm(request.POST or None)
@@ -49,6 +51,7 @@ def email_view(request):
         # TODO: Put send_mail and save() in transaction
         email.send()
         my_form.save()
+        # Clear form after email info in DB
         my_form = EmailForm()
         logger.info("email sent successfully")
       except BadHeaderError:
