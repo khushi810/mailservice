@@ -68,7 +68,7 @@ CELERY_TIMEZONE = 'Asia/Kolkata'
 CELERY_BEAT_SCHEDULE = {
     'scheduled-email-report': {
         'task': 'emails.tasks.scheduled_email_report',
-        'schedule': crontab(minute='*'),
+        'schedule': crontab(minute='*/30'),
         'args': ()
     }
 }
