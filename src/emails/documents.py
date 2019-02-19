@@ -1,3 +1,8 @@
+""" Instructions
+Run following command to start logstash process in order to send events to elastic search
+sudo <path-to-logstash-bin> -f <path-to-repo>/mailservice/src/mailservice/logstash.conf
+"""
+
 from elasticsearch_dsl.connections import connections
 from django_elasticsearch_dsl import DocType, Index
 from .models import Email
