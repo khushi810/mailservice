@@ -5,12 +5,14 @@ from elasticsearch import Elasticsearch
 from elasticsearch_dsl import Search
 
 
+# Initialize elasticsearch instance
 client = Elasticsearch()
 my_search = Search(using=client)
 
 # Create a connection to ElasticSearch
 connections.create_connection()
 
+# Index emails table
 email   = Index('emails')
 
 email.settings(
