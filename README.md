@@ -96,7 +96,6 @@ Kibana is used to visualize all the events, data and logs
 
 - ` wget https://artifacts.elastic.co/downloads/kibana/kibana-6.6.0.deb`
 - `dpkg -i kibana-6.6.0.deb`
-- `pip install python kibana`
 
 Next, open **/etc/kibana/kibana.yml** and update below two lines
 
