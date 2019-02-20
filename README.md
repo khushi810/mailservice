@@ -32,8 +32,6 @@ Virtualenv is a python environment builder. It is used to create isolated python
 
 Create virtual environment for your project directory followed by commands
 
-- `mkdir dir_name`
-- `cd dir_name`
 - `virtualenv -p python3 .`
 - `pip freeze`
 
