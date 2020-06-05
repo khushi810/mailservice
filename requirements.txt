@@ -1,7 +1,7 @@
 amqp==2.4.1
 billiard==3.5.0.5
 celery==4.2.1
-Django==2.0.7
+Django==2.2.13
 django-crispy-forms==1.7.2
 django-crontab==0.7.1
 django-elasticsearch-dsl==0.5.1
